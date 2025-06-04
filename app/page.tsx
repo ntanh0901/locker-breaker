@@ -406,6 +406,16 @@ export default function LockerBreaker() {
                               aria-label={`Digit ${index + 1}`}
                               inputMode="numeric"
                             />
+                            <style jsx>{`
+                              input[type="number"]::-webkit-outer-spin-button,
+                              input[type="number"]::-webkit-inner-spin-button {
+                                -webkit-appearance: none;
+                                margin: 0;
+                              }
+                              input[type="number"] {
+                                -moz-appearance: textfield;
+                              }
+                            `}</style>
                             {/* Lock wheel effect overlay */}
                             <div className="absolute inset-0 pointer-events-none">
                               <div className="w-full h-full border-l border-r border-slate-500 opacity-50"></div>
