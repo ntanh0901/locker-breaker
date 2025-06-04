@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply bg-gradient-to-br from-slate-900 to-slate-800 text-white;
+  }
+}
+
+@layer components {
+  .digit-input {
+    @apply w-12 h-12 text-center text-xl font-bold border-2 border-slate-600 rounded-lg bg-slate-700 text-white focus:border-blue-500 focus:outline-none transition-colors;
+  }
+
+  .feedback-correct {
+    @apply bg-green-500 text-white;
+  }
+
+  .feedback-partial {
+    @apply bg-yellow-500 text-black;
+  }
+
+  .feedback-wrong {
+    @apply bg-red-500 text-white;
+  }
+
+  .suggestion-card {
+    @apply bg-slate-800 rounded-lg p-4 border border-slate-700 hover:border-slate-600 transition-colors;
+  }
+}
