@@ -5,9 +5,9 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Locker Breaker - Mastermind Solver",
+  title: "Locker Breaker",
   description:
-    "An intelligent assistant to help you solve 4-digit locker codes using optimal Mastermind strategies",
+    "An intelligent assistant to help you solve 4-digit locker codes",
 };
 
 export default function RootLayout({
