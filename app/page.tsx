@@ -894,6 +894,10 @@ export default function LockerBreaker() {
                               {suggestion.winProbabilities && (
                                 <div className="mb-2 flex flex-wrap gap-1 justify-center">
                                   {Object.entries(suggestion.winProbabilities)
+                                    .filter(([moves]) => {
+                                      const moveCount = parseInt(moves);
+                                      return moveCount === 4 || moveCount === 5;
+                                    })
                                     .sort(
                                       ([a], [b]) => parseInt(a) - parseInt(b)
                                     )
@@ -901,13 +905,9 @@ export default function LockerBreaker() {
                                       <span
                                         key={moves}
                                         className={`text-xs px-2 py-1 rounded ${
-                                          parseInt(moves) <=
-                                          gameState.guesses.length + 1
+                                          parseInt(moves) === 4
                                             ? "bg-green-600 bg-opacity-70"
-                                            : parseInt(moves) <=
-                                              gameState.guesses.length + 2
-                                            ? "bg-blue-600 bg-opacity-70"
-                                            : "bg-gray-600 bg-opacity-70"
+                                            : "bg-blue-600 bg-opacity-70"
                                         }`}
                                       >
                                         {moves}🎯:{" "}
