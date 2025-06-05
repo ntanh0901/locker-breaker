@@ -771,148 +771,185 @@ export default function LockerBreaker() {
                         ...filteredSuggestions.map((s) => s.score)
                       );
 
-                      return filteredSuggestions.map((suggestion, index) => {
-                        const isOptimal =
-                          suggestion.score === bestScore &&
-                          suggestions.possibleSolutionsCount > 2;
+                      // Pre-analyze all suggestions to determine strategy types
+                      const suggestionAnalysis = filteredSuggestions.map(
+                        (suggestion) => {
+                          const isOptimal =
+                            suggestion.score === bestScore &&
+                            suggestions.possibleSolutionsCount > 2;
 
-                        // Analyze strategy type based on win probabilities
-                        let strategyType = "optimal"; // default
-                        if (
-                          suggestion.winProbabilities &&
-                          gameState.guesses.length >= 2
-                        ) {
-                          const nextMove = gameState.guesses.length + 1;
-                          const fourMoveChance =
-                            suggestion.winProbabilities[nextMove] || 0;
-                          const fiveMoveChance =
-                            suggestion.winProbabilities[nextMove + 1] || 0;
+                          // Analyze strategy type based on win probabilities
+                          let strategyType = "optimal"; // default
+                          if (
+                            suggestion.winProbabilities &&
+                            gameState.guesses.length >= 2
+                          ) {
+                            const nextMove = gameState.guesses.length + 1;
+                            const fourMoveChance =
+                              suggestion.winProbabilities[nextMove] || 0;
+                            const fiveMoveChance =
+                              suggestion.winProbabilities[nextMove + 1] || 0;
 
-                          if (fiveMoveChance > 0.6) {
-                            strategyType = "conservative"; // High chance of 5-move finish
-                          } else if (fourMoveChance > 0.4) {
-                            strategyType = "aggressive"; // Good chance of 4-move finish
+                            if (fiveMoveChance > 0.6) {
+                              strategyType = "conservative"; // High chance of 5-move finish
+                            } else if (fourMoveChance > 0.4) {
+                              strategyType = "aggressive"; // Good chance of 4-move finish
+                            }
                           }
+
+                          return { suggestion, isOptimal, strategyType };
                         }
+                      );
 
-                        return (
-                          <button
-                            key={index}
-                            className={`w-full p-3 sm:p-4 rounded-lg border transition-all hover:scale-105 active:scale-95 touch-manipulation ${
-                              isOptimal && strategyType === "conservative"
-                                ? "bg-gradient-to-r from-emerald-600 to-teal-600 border-emerald-400"
-                                : isOptimal && strategyType === "aggressive"
-                                ? "bg-gradient-to-r from-orange-600 to-red-600 border-orange-400"
-                                : isOptimal
-                                ? "bg-gradient-to-r from-blue-600 to-purple-600 border-blue-400"
-                                : "bg-slate-700 border-slate-600 hover:border-slate-500"
-                            }`}
-                            onClick={() => useSuggestion(suggestion.guess)}
-                            aria-label={`Use suggestion ${
-                              index + 1
-                            }: ${suggestion.guess.join(" ")}`}
-                          >
-                            <div className="flex items-center justify-between mb-2">
-                              <span className="text-xs sm:text-sm font-medium">
-                                {isOptimal && strategyType === "conservative"
-                                  ? "🛡️ SAFE CHOICE"
-                                  : isOptimal && strategyType === "aggressive"
-                                  ? "⚡ RISKY PLAY"
-                                  : isOptimal
-                                  ? "🌟 BEST MOVE"
-                                  : suggestions.possibleSolutionsCount === 2
-                                  ? `🎲 50/50 Choice ${index + 1}`
-                                  : `Option ${index + 1}`}
-                              </span>
-                              <div className="flex items-center gap-2">
-                                <span className="text-xs bg-black bg-opacity-30 px-2 py-1 rounded">
-                                  {suggestions.possibleSolutionsCount <= 10
-                                    ? `Info Score: ${suggestion.score}`
-                                    : `Risk: ${suggestion.score}`}
+                      // Check if all optimal suggestions are of the same strategy type
+                      const optimalSuggestions = suggestionAnalysis.filter(
+                        (s) => s.isOptimal
+                      );
+                      const uniqueStrategyTypes = new Set(
+                        optimalSuggestions.map((s) => s.strategyType)
+                      );
+                      const shouldHighlight = uniqueStrategyTypes.size > 1; // Only highlight if there are different strategy types
+
+                      return suggestionAnalysis.map(
+                        ({ suggestion, isOptimal, strategyType }, index) => {
+                          return (
+                            <button
+                              key={index}
+                              className={`w-full p-3 sm:p-4 rounded-lg border transition-all hover:scale-105 active:scale-95 touch-manipulation ${
+                                shouldHighlight &&
+                                isOptimal &&
+                                strategyType === "conservative"
+                                  ? "bg-gradient-to-r from-emerald-600 to-teal-600 border-emerald-400"
+                                  : shouldHighlight &&
+                                    isOptimal &&
+                                    strategyType === "aggressive"
+                                  ? "bg-gradient-to-r from-orange-600 to-red-600 border-orange-400"
+                                  : shouldHighlight && isOptimal
+                                  ? "bg-gradient-to-r from-blue-600 to-purple-600 border-blue-400"
+                                  : "bg-slate-700 border-slate-600 hover:border-slate-500"
+                              }`}
+                              onClick={() => useSuggestion(suggestion.guess)}
+                              aria-label={`Use suggestion ${
+                                index + 1
+                              }: ${suggestion.guess.join(" ")}`}
+                            >
+                              <div className="flex items-center justify-between mb-2">
+                                <span className="text-xs sm:text-sm font-medium">
+                                  {shouldHighlight &&
+                                  isOptimal &&
+                                  strategyType === "conservative"
+                                    ? "🛡️ SAFE CHOICE"
+                                    : shouldHighlight &&
+                                      isOptimal &&
+                                      strategyType === "aggressive"
+                                    ? "⚡ RISKY PLAY"
+                                    : shouldHighlight && isOptimal
+                                    ? "🌟 BEST MOVE"
+                                    : isOptimal
+                                    ? "🌟 BEST MOVE"
+                                    : suggestions.possibleSolutionsCount === 2
+                                    ? `🎲 50/50 Choice ${index + 1}`
+                                    : `Option ${index + 1}`}
                                 </span>
-                                {suggestion.isPossibleSolution && (
-                                  <span className="text-xs bg-green-600 bg-opacity-70 px-2 py-1 rounded">
-                                    Possible Answer
+                                <div className="flex items-center gap-2">
+                                  <span className="text-xs bg-black bg-opacity-30 px-2 py-1 rounded">
+                                    {suggestions.possibleSolutionsCount <= 10
+                                      ? `Info Score: ${suggestion.score}`
+                                      : `Risk: ${suggestion.score}`}
                                   </span>
-                                )}
-                              </div>
-                            </div>
-
-                            <div className="flex gap-1 mb-2 justify-center">
-                              {suggestion.guess.map((digit, digitIndex) => (
-                                <div
-                                  key={digitIndex}
-                                  className={`w-6 h-6 sm:w-8 sm:h-8 rounded flex items-center justify-center font-bold text-xs sm:text-sm ${
-                                    isOptimal && strategyType === "conservative"
-                                      ? "bg-white text-emerald-800"
-                                      : isOptimal &&
-                                        strategyType === "aggressive"
-                                      ? "bg-white text-orange-800"
-                                      : isOptimal
-                                      ? "bg-white text-purple-800"
-                                      : "bg-slate-600 text-white"
-                                  }`}
-                                >
-                                  {digit}
-                                </div>
-                              ))}
-                            </div>
-
-                            {/* Win Probabilities */}
-                            {suggestion.winProbabilities && (
-                              <div className="mb-2 flex flex-wrap gap-1 justify-center">
-                                {Object.entries(suggestion.winProbabilities)
-                                  .sort(([a], [b]) => parseInt(a) - parseInt(b))
-                                  .map(([moves, probability]) => (
-                                    <span
-                                      key={moves}
-                                      className={`text-xs px-2 py-1 rounded ${
-                                        parseInt(moves) <=
-                                        gameState.guesses.length + 1
-                                          ? "bg-green-600 bg-opacity-70"
-                                          : parseInt(moves) <=
-                                            gameState.guesses.length + 2
-                                          ? "bg-blue-600 bg-opacity-70"
-                                          : "bg-gray-600 bg-opacity-70"
-                                      }`}
-                                    >
-                                      {moves}🎯:{" "}
-                                      {(probability * 100).toFixed(0)}%
+                                  {suggestion.isPossibleSolution && (
+                                    <span className="text-xs bg-green-600 bg-opacity-70 px-2 py-1 rounded">
+                                      Possible Answer
                                     </span>
-                                  ))}
+                                  )}
+                                </div>
                               </div>
-                            )}
 
-                            <div className="text-xs text-gray-300">
-                              {suggestion.winProbabilities &&
-                              strategyType === "conservative"
-                                ? "🛡️ Safe route - high chance of 5-move finish"
-                                : suggestion.winProbabilities &&
-                                  strategyType === "aggressive"
-                                ? (() => {
-                                    const nextMove =
-                                      gameState.guesses.length + 1;
-                                    const fourMoveChance =
-                                      suggestion.winProbabilities[nextMove] ||
-                                      0;
-                                    return fourMoveChance >= 1.0
-                                      ? ""
-                                      : "⚡ High risk, high reward - go for the 4-move win";
-                                  })()
-                                : suggestion.winProbabilities
-                                ? "📊 Win probability analysis"
-                                : isOptimal &&
-                                  suggestions.possibleSolutionsCount <= 10
-                                ? "🧠 Optimized for maximum information gain"
-                                : isOptimal
-                                ? "🎯 Minimizes worst-case scenarios"
-                                : suggestion.isPossibleSolution
-                                ? "✨ Could be the answer"
-                                : "🎲 Strategic alternative"}
-                            </div>
-                          </button>
-                        );
-                      });
+                              <div className="flex gap-1 mb-2 justify-center">
+                                {suggestion.guess.map((digit, digitIndex) => (
+                                  <div
+                                    key={digitIndex}
+                                    className={`w-6 h-6 sm:w-8 sm:h-8 rounded flex items-center justify-center font-bold text-xs sm:text-sm ${
+                                      shouldHighlight &&
+                                      isOptimal &&
+                                      strategyType === "conservative"
+                                        ? "bg-white text-emerald-800"
+                                        : shouldHighlight &&
+                                          isOptimal &&
+                                          strategyType === "aggressive"
+                                        ? "bg-white text-orange-800"
+                                        : shouldHighlight && isOptimal
+                                        ? "bg-white text-purple-800"
+                                        : isOptimal
+                                        ? "bg-white text-slate-800"
+                                        : "bg-slate-600 text-white"
+                                    }`}
+                                  >
+                                    {digit}
+                                  </div>
+                                ))}
+                              </div>
+
+                              {/* Win Probabilities */}
+                              {suggestion.winProbabilities && (
+                                <div className="mb-2 flex flex-wrap gap-1 justify-center">
+                                  {Object.entries(suggestion.winProbabilities)
+                                    .sort(
+                                      ([a], [b]) => parseInt(a) - parseInt(b)
+                                    )
+                                    .map(([moves, probability]) => (
+                                      <span
+                                        key={moves}
+                                        className={`text-xs px-2 py-1 rounded ${
+                                          parseInt(moves) <=
+                                          gameState.guesses.length + 1
+                                            ? "bg-green-600 bg-opacity-70"
+                                            : parseInt(moves) <=
+                                              gameState.guesses.length + 2
+                                            ? "bg-blue-600 bg-opacity-70"
+                                            : "bg-gray-600 bg-opacity-70"
+                                        }`}
+                                      >
+                                        {moves}🎯:{" "}
+                                        {(probability * 100).toFixed(0)}%
+                                      </span>
+                                    ))}
+                                </div>
+                              )}
+
+                              <div className="text-xs text-gray-300">
+                                {suggestion.winProbabilities &&
+                                strategyType === "conservative"
+                                  ? "🛡️ Safe route - high chance of 5-move finish"
+                                  : suggestion.winProbabilities &&
+                                    strategyType === "aggressive"
+                                  ? (() => {
+                                      const nextMove =
+                                        gameState.guesses.length + 1;
+                                      const fourMoveChance =
+                                        suggestion.winProbabilities[nextMove] ||
+                                        0;
+                                      return fourMoveChance >= 1.0
+                                        ? ""
+                                        : "⚡ High risk, high reward - go for the 4-move win";
+                                    })()
+                                  : suggestion.winProbabilities
+                                  ? "📊 Win probability analysis"
+                                  : isOptimal &&
+                                    suggestions.possibleSolutionsCount <= 10
+                                  ? "🧠 Optimized for maximum information gain"
+                                  : isOptimal
+                                  ? "🎯 Minimizes worst-case scenarios"
+                                  : suggestion.isPossibleSolution
+                                  ? suggestions.possibleSolutionsCount === 1
+                                    ? "✨ The answer"
+                                    : "✨ Could be the answer"
+                                  : "🎲 Strategic alternative"}
+                              </div>
+                            </button>
+                          );
+                        }
+                      );
                     })()}
 
                     {/* Algorithm explanation */}
