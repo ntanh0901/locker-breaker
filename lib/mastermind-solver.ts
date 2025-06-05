@@ -200,6 +200,7 @@ export function getBestNextGuesses(
           guess: possibleSolutions[0],
           score: 0,
           isPossibleSolution: true,
+          winProbabilities: { [gameState.guesses.length + 1]: 1.0 },
         },
       ],
       possibleSolutionsCount: 1,
@@ -209,10 +210,18 @@ export function getBestNextGuesses(
   // For efficiency, we'll test both possible solutions and some strategic guesses
   const candidateGuesses = new Set<string>();
 
-  // Add all possible solutions as candidates (prioritize these)
-  possibleSolutions.forEach((solution) => {
-    candidateGuesses.add(solution.join(","));
-  });
+  // ALWAYS add all possible solutions as candidates when there are few left
+  if (possibleSolutions.length <= 10) {
+    possibleSolutions.forEach((solution) => {
+      candidateGuesses.add(solution.join(","));
+    });
+  } else {
+    // For larger sets, add a representative sample of possible solutions
+    const maxSolutions = Math.min(possibleSolutions.length, 50);
+    for (let i = 0; i < maxSolutions; i++) {
+      candidateGuesses.add(possibleSolutions[i].join(","));
+    }
+  }
 
   // Add information-maximizing guesses for small sets
   if (possibleSolutions.length <= 10) {
@@ -293,7 +302,7 @@ export function getBestNextGuesses(
 
     // Calculate win probabilities for small solution sets (performance consideration)
     let winProbabilities: { [moves: number]: number } | undefined;
-    if (possibleSolutions.length <= 20 && gameState.guesses.length >= 2) {
+    if (possibleSolutions.length <= 20) {
       winProbabilities = calculateWinProbabilities(
         candidate,
         possibleSolutions,
@@ -317,8 +326,14 @@ export function getBestNextGuesses(
     return 0;
   });
 
+  // When there are few possibilities left, ensure we show at least all possible solutions
+  const effectiveMaxSuggestions =
+    possibleSolutions.length <= 5
+      ? Math.max(maxSuggestions, possibleSolutions.length)
+      : maxSuggestions;
+
   return {
-    suggestions: scoredGuesses.slice(0, maxSuggestions),
+    suggestions: scoredGuesses.slice(0, effectiveMaxSuggestions),
     possibleSolutionsCount: possibleSolutions.length,
   };
 }
@@ -435,18 +450,30 @@ function calculateWinProbabilities(
 
   const totalOutcomes: { [moves: number]: number } = {};
 
+  // Check if this guess is actually one of the possible solutions
+  const isGuessAPossibleSolution = possibleSolutions.some((sol) =>
+    sol.every((digit, i) => digit === guess[i])
+  );
+
   for (const [feedbackKey, remainingSolutions] of Array.from(
     feedbackGroups.entries()
   )) {
     const groupProbability =
       remainingSolutions.length / possibleSolutions.length;
 
-    if (remainingSolutions.length === 1) {
-      // This feedback would win the game
+    // Check if this feedback means we found the correct answer
+    const isWinningFeedback = feedbackKey === "correct-correct-correct-correct";
+
+    if (isWinningFeedback) {
+      // This feedback would win the game immediately
       const winMove = currentMoveCount + 1;
       totalOutcomes[winMove] = (totalOutcomes[winMove] || 0) + groupProbability;
-    } else {
-      // Need to continue playing - find optimal next move for this scenario
+    } else if (remainingSolutions.length === 1) {
+      // After this feedback, only one solution remains - we can win in the next move
+      const winMove = currentMoveCount + 2; // +1 for this move, +1 for the final move
+      totalOutcomes[winMove] = (totalOutcomes[winMove] || 0) + groupProbability;
+    } else if (maxDepth > 1) {
+      // Need to continue playing - simulate deeper
       const nextBestGuess = findOptimalNextGuess(remainingSolutions);
       const subProbabilities = calculateWinProbabilities(
         nextBestGuess,
@@ -461,6 +488,14 @@ function calculateWinProbabilities(
         totalOutcomes[moveCount] =
           (totalOutcomes[moveCount] || 0) + groupProbability * prob;
       }
+    } else {
+      // Reached max depth - estimate remaining moves needed
+      // For small groups, estimate 1-2 more moves; for larger groups, estimate more
+      const estimatedAdditionalMoves = remainingSolutions.length <= 3 ? 2 : 3;
+      const estimatedFinishMove =
+        currentMoveCount + 1 + estimatedAdditionalMoves;
+      totalOutcomes[estimatedFinishMove] =
+        (totalOutcomes[estimatedFinishMove] || 0) + groupProbability;
     }
   }
 
