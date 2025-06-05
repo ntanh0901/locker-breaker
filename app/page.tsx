@@ -644,8 +644,62 @@ export default function LockerBreaker() {
             </div>
           </div>
 
-          {/* Sidebar - Suggestions & Stats */}
+          {/* Sidebar - Stats & Suggestions */}
           <div className="space-y-4 sm:space-y-6">
+            {/* Game Statistics */}
+            <div className="bg-slate-800 rounded-xl p-4 sm:p-6 shadow-2xl border border-slate-700">
+              <h3 className="text-lg sm:text-xl font-bold mb-4">Game Stats</h3>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div className="text-center">
+                  <div className="text-xl sm:text-2xl font-bold text-blue-400">
+                    {gameMode === "helper"
+                      ? gameState.guesses.length
+                      : practiceResult
+                      ? 1
+                      : 0}
+                  </div>
+                  <div className="text-xs sm:text-sm text-gray-400">
+                    Attempts
+                  </div>
+                </div>
+                <div className="text-center">
+                  <div className="text-xl sm:text-2xl font-bold text-purple-400">
+                    {gameMode === "helper"
+                      ? gameState.possibleSolutions.length
+                      : "????"}
+                  </div>
+                  <div className="text-xs sm:text-sm text-gray-400">
+                    Possible Codes
+                  </div>
+                </div>
+              </div>
+
+              {gameMode === "helper" &&
+                gameState.possibleSolutions.length <= 10 &&
+                gameState.possibleSolutions.length > 1 && (
+                  <div className="mt-4">
+                    <p className="text-green-400 font-medium mb-2 text-sm">
+                      🎯 Almost there! Remaining possibilities:
+                    </p>
+                    <div className="space-y-1 max-h-32 overflow-y-auto">
+                      {gameState.possibleSolutions.map((solution, index) => (
+                        <div key={index} className="flex gap-1 justify-center">
+                          {solution.map((digit, digitIndex) => (
+                            <div
+                              key={digitIndex}
+                              className="w-4 h-4 sm:w-5 sm:h-5 bg-green-600 rounded text-center text-xs font-bold leading-4 sm:leading-5"
+                            >
+                              {digit}
+                            </div>
+                          ))}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+            </div>
+
             {/* AI Suggestions */}
             {gameMode === "helper" && gameStep === "showing_suggestions" && (
               <div className="bg-slate-800 rounded-xl p-4 sm:p-6 shadow-2xl border border-slate-700">
@@ -654,53 +708,226 @@ export default function LockerBreaker() {
                   Suggestions
                 </h3>
 
+                {/* Coin spending advice after 3 guesses */}
+                {gameState.guesses.length === 3 &&
+                  suggestions &&
+                  (() => {
+                    // Check if we have both 4-move and 5-move probabilities across suggestions
+                    const hasFourMoveChance = suggestions.suggestions.some(
+                      (s) =>
+                        s.winProbabilities &&
+                        s.winProbabilities[gameState.guesses.length + 1] > 0
+                    );
+                    const hasFiveMoveChance = suggestions.suggestions.some(
+                      (s) =>
+                        s.winProbabilities &&
+                        s.winProbabilities[gameState.guesses.length + 2] > 0
+                    );
+                    return hasFourMoveChance && hasFiveMoveChance;
+                  })() && (
+                    <div className="mt-4 p-3 bg-amber-900 bg-opacity-30 rounded-lg border border-amber-600">
+                      <p className="text-xs text-amber-200 font-medium mb-2 flex items-center gap-1">
+                        💰 Strategic Advice
+                      </p>
+                      <p className="text-xs text-amber-100">
+                        If you're willing to spend{" "}
+                        <strong>200 coins for a 5th guess</strong>, choose the
+                        🛡️ safe option with higher <strong>"5🎯"</strong>{" "}
+                        percentage. Or take the risk with ⚡ aggressive moves
+                        with higher <strong>"4🎯"</strong> percentage to
+                        potentially save coins!
+                      </p>
+                    </div>
+                  )}
+
                 {suggestions && suggestions.suggestions.length > 0 ? (
-                  <div className="space-y-3">
-                    {suggestions.suggestions.map((suggestion, index) => (
-                      <button
-                        key={index}
-                        className={`w-full p-3 sm:p-4 rounded-lg border transition-all hover:scale-105 active:scale-95 touch-manipulation ${
-                          index === 0
-                            ? "bg-gradient-to-r from-blue-600 to-purple-600 border-blue-400"
-                            : "bg-slate-700 border-slate-600 hover:border-slate-500"
-                        }`}
-                        onClick={() => useSuggestion(suggestion.guess)}
-                        aria-label={`Use suggestion ${
-                          index + 1
-                        }: ${suggestion.guess.join(" ")}`}
-                      >
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="text-xs sm:text-sm font-medium">
-                            {index === 0
-                              ? "🌟 BEST MOVE"
-                              : `Option ${index + 1}`}
-                          </span>
-                          <span className="text-xs bg-black bg-opacity-30 px-2 py-1 rounded">
-                            Score: {suggestion.score}
-                          </span>
+                  <div className="space-y-3 mt-4">
+                    {/* Algorithm info for small solution sets */}
+                    {/* {suggestions.possibleSolutionsCount <= 10 &&
+                      suggestions.possibleSolutionsCount > 1 && (
+                        <div className="bg-purple-900 bg-opacity-50 rounded-lg p-3 mb-4">
+                          <p className="text-xs text-purple-200 flex items-center gap-1">
+                            <Brain size={14} />
+                            <span className="font-medium">
+                              Smart Mode Active:
+                            </span>
+                            Using information-maximizing strategy for optimal
+                            elimination
+                          </p>
                         </div>
+                      )} */}
 
-                        <div className="flex gap-1 mb-2 justify-center">
-                          {suggestion.guess.map((digit, digitIndex) => (
-                            <div
-                              key={digitIndex}
-                              className={`w-6 h-6 sm:w-8 sm:h-8 rounded flex items-center justify-center font-bold text-xs sm:text-sm ${
-                                index === 0
-                                  ? "bg-white text-purple-800"
-                                  : "bg-slate-600 text-white"
-                              }`}
-                            >
-                              {digit}
+                    {(() => {
+                      // For 50/50 cases, only show the 2 possible solutions
+                      const filteredSuggestions =
+                        suggestions.possibleSolutionsCount === 2
+                          ? suggestions.suggestions
+                              .filter((s) => s.isPossibleSolution)
+                              .slice(0, 2)
+                          : suggestions.suggestions;
+
+                      // Find the best score to identify all equally optimal moves
+                      const bestScore = Math.min(
+                        ...filteredSuggestions.map((s) => s.score)
+                      );
+
+                      return filteredSuggestions.map((suggestion, index) => {
+                        const isOptimal =
+                          suggestion.score === bestScore &&
+                          suggestions.possibleSolutionsCount > 2;
+
+                        // Analyze strategy type based on win probabilities
+                        let strategyType = "optimal"; // default
+                        if (
+                          suggestion.winProbabilities &&
+                          gameState.guesses.length >= 2
+                        ) {
+                          const nextMove = gameState.guesses.length + 1;
+                          const fourMoveChance =
+                            suggestion.winProbabilities[nextMove] || 0;
+                          const fiveMoveChance =
+                            suggestion.winProbabilities[nextMove + 1] || 0;
+
+                          if (fiveMoveChance > 0.6) {
+                            strategyType = "conservative"; // High chance of 5-move finish
+                          } else if (fourMoveChance > 0.4) {
+                            strategyType = "aggressive"; // Good chance of 4-move finish
+                          }
+                        }
+
+                        return (
+                          <button
+                            key={index}
+                            className={`w-full p-3 sm:p-4 rounded-lg border transition-all hover:scale-105 active:scale-95 touch-manipulation ${
+                              isOptimal && strategyType === "conservative"
+                                ? "bg-gradient-to-r from-emerald-600 to-teal-600 border-emerald-400"
+                                : isOptimal && strategyType === "aggressive"
+                                ? "bg-gradient-to-r from-orange-600 to-red-600 border-orange-400"
+                                : isOptimal
+                                ? "bg-gradient-to-r from-blue-600 to-purple-600 border-blue-400"
+                                : "bg-slate-700 border-slate-600 hover:border-slate-500"
+                            }`}
+                            onClick={() => useSuggestion(suggestion.guess)}
+                            aria-label={`Use suggestion ${
+                              index + 1
+                            }: ${suggestion.guess.join(" ")}`}
+                          >
+                            <div className="flex items-center justify-between mb-2">
+                              <span className="text-xs sm:text-sm font-medium">
+                                {isOptimal && strategyType === "conservative"
+                                  ? "🛡️ SAFE CHOICE"
+                                  : isOptimal && strategyType === "aggressive"
+                                  ? "⚡ RISKY PLAY"
+                                  : isOptimal
+                                  ? "🌟 BEST MOVE"
+                                  : suggestions.possibleSolutionsCount === 2
+                                  ? `🎲 50/50 Choice ${index + 1}`
+                                  : `Option ${index + 1}`}
+                              </span>
+                              <div className="flex items-center gap-2">
+                                <span className="text-xs bg-black bg-opacity-30 px-2 py-1 rounded">
+                                  {suggestions.possibleSolutionsCount <= 10
+                                    ? `Info Score: ${suggestion.score}`
+                                    : `Risk: ${suggestion.score}`}
+                                </span>
+                                {suggestion.isPossibleSolution && (
+                                  <span className="text-xs bg-green-600 bg-opacity-70 px-2 py-1 rounded">
+                                    Possible Answer
+                                  </span>
+                                )}
+                              </div>
                             </div>
-                          ))}
-                        </div>
 
-                        <div className="text-xs text-gray-300">
-                          {suggestion.isPossibleSolution &&
-                            "✨ Possible solution"}
-                        </div>
-                      </button>
-                    ))}
+                            <div className="flex gap-1 mb-2 justify-center">
+                              {suggestion.guess.map((digit, digitIndex) => (
+                                <div
+                                  key={digitIndex}
+                                  className={`w-6 h-6 sm:w-8 sm:h-8 rounded flex items-center justify-center font-bold text-xs sm:text-sm ${
+                                    isOptimal && strategyType === "conservative"
+                                      ? "bg-white text-emerald-800"
+                                      : isOptimal &&
+                                        strategyType === "aggressive"
+                                      ? "bg-white text-orange-800"
+                                      : isOptimal
+                                      ? "bg-white text-purple-800"
+                                      : "bg-slate-600 text-white"
+                                  }`}
+                                >
+                                  {digit}
+                                </div>
+                              ))}
+                            </div>
+
+                            {/* Win Probabilities */}
+                            {suggestion.winProbabilities && (
+                              <div className="mb-2 flex flex-wrap gap-1 justify-center">
+                                {Object.entries(suggestion.winProbabilities)
+                                  .sort(([a], [b]) => parseInt(a) - parseInt(b))
+                                  .map(([moves, probability]) => (
+                                    <span
+                                      key={moves}
+                                      className={`text-xs px-2 py-1 rounded ${
+                                        parseInt(moves) <=
+                                        gameState.guesses.length + 1
+                                          ? "bg-green-600 bg-opacity-70"
+                                          : parseInt(moves) <=
+                                            gameState.guesses.length + 2
+                                          ? "bg-blue-600 bg-opacity-70"
+                                          : "bg-gray-600 bg-opacity-70"
+                                      }`}
+                                    >
+                                      {moves}🎯:{" "}
+                                      {(probability * 100).toFixed(0)}%
+                                    </span>
+                                  ))}
+                              </div>
+                            )}
+
+                            <div className="text-xs text-gray-300">
+                              {suggestion.winProbabilities &&
+                              strategyType === "conservative"
+                                ? "🛡️ Safe route - high chance of 5-move finish"
+                                : suggestion.winProbabilities &&
+                                  strategyType === "aggressive"
+                                ? (() => {
+                                    const nextMove =
+                                      gameState.guesses.length + 1;
+                                    const fourMoveChance =
+                                      suggestion.winProbabilities[nextMove] ||
+                                      0;
+                                    return fourMoveChance >= 1.0
+                                      ? ""
+                                      : "⚡ High risk, high reward - go for the 4-move win";
+                                  })()
+                                : suggestion.winProbabilities
+                                ? "📊 Win probability analysis"
+                                : isOptimal &&
+                                  suggestions.possibleSolutionsCount <= 10
+                                ? "🧠 Optimized for maximum information gain"
+                                : isOptimal
+                                ? "🎯 Minimizes worst-case scenarios"
+                                : suggestion.isPossibleSolution
+                                ? "✨ Could be the answer"
+                                : "🎲 Strategic alternative"}
+                            </div>
+                          </button>
+                        );
+                      });
+                    })()}
+
+                    {/* Algorithm explanation */}
+                    {/* <div className="mt-4 p-3 bg-slate-700 bg-opacity-50 rounded-lg">
+                      <p className="text-xs text-gray-400">
+                        💡 <span className="font-medium">Algorithm:</span>
+                        {suggestions.possibleSolutionsCount <= 10
+                          ? " Using entropy-based scoring to maximize information per guess"
+                          : " Using minimax strategy to minimize worst-case outcomes"}
+                      </p>
+                      <p className="text-xs text-gray-400 mt-1">
+                        Lower scores = better moves • Possible answers are
+                        prioritized
+                      </p>
+                    </div> */}
                   </div>
                 ) : gameState.possibleSolutions.length > 0 ? (
                   <div className="space-y-3">
@@ -814,60 +1041,6 @@ export default function LockerBreaker() {
                 </div>
               </div>
             )}
-
-            {/* Game Statistics */}
-            <div className="bg-slate-800 rounded-xl p-4 sm:p-6 shadow-2xl border border-slate-700">
-              <h3 className="text-lg sm:text-xl font-bold mb-4">Game Stats</h3>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div className="text-center">
-                  <div className="text-xl sm:text-2xl font-bold text-blue-400">
-                    {gameMode === "helper"
-                      ? gameState.guesses.length
-                      : practiceResult
-                      ? 1
-                      : 0}
-                  </div>
-                  <div className="text-xs sm:text-sm text-gray-400">
-                    Attempts
-                  </div>
-                </div>
-                <div className="text-center">
-                  <div className="text-xl sm:text-2xl font-bold text-purple-400">
-                    {gameMode === "helper"
-                      ? gameState.possibleSolutions.length
-                      : "????"}
-                  </div>
-                  <div className="text-xs sm:text-sm text-gray-400">
-                    Possible Codes
-                  </div>
-                </div>
-              </div>
-
-              {gameMode === "helper" &&
-                gameState.possibleSolutions.length <= 10 &&
-                gameState.possibleSolutions.length > 1 && (
-                  <div className="mt-4">
-                    <p className="text-green-400 font-medium mb-2 text-sm">
-                      🎯 Almost there! Remaining possibilities:
-                    </p>
-                    <div className="space-y-1 max-h-32 overflow-y-auto">
-                      {gameState.possibleSolutions.map((solution, index) => (
-                        <div key={index} className="flex gap-1 justify-center">
-                          {solution.map((digit, digitIndex) => (
-                            <div
-                              key={digitIndex}
-                              className="w-4 h-4 sm:w-5 sm:h-5 bg-green-600 rounded text-center text-xs font-bold leading-4 sm:leading-5"
-                            >
-                              {digit}
-                            </div>
-                          ))}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-            </div>
 
             {/* Move History */}
             {gameMode === "helper" && gameState.guesses.length > 0 && (
