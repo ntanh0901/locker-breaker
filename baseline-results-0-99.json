@@ -1,0 +1,4551 @@
+{
+  "report": {
+    "timestamp": "2025-06-05T05:58:05.794Z",
+    "algorithm": "baseline_minimax_only",
+    "duration": 0.26,
+    "totalCases": 100,
+    "successCount": 100,
+    "errorCount": 0,
+    "successRate": 100,
+    "averageMoves": 4.13,
+    "moveDistribution": {
+      "2": 1,
+      "3": 25,
+      "4": 46,
+      "5": 18,
+      "6": 8,
+      "7": 2
+    },
+    "statistics": {
+      "oneMove": 0,
+      "twoMoves": 1,
+      "threeMoves": 25,
+      "fourMoves": 46,
+      "fiveMoves": 18,
+      "sixMoves": 8,
+      "sevenMoves": 2,
+      "eightPlusMoves": 0,
+      "fourOrLessCount": 72,
+      "fiveOrLessCount": 90
+    }
+  },
+  "results": [
+    {
+      "secret": "0000",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0056",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0078",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0000",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0001",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "partial",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0156",
+          "feedback": [
+            "correct",
+            "partial",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0718",
+          "feedback": [
+            "correct",
+            "wrong",
+            "partial",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0001",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0002",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "partial",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0526",
+          "feedback": [
+            "correct",
+            "wrong",
+            "partial",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0782",
+          "feedback": [
+            "correct",
+            "wrong",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0002",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0003",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "partial",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0356",
+          "feedback": [
+            "correct",
+            "partial",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0783",
+          "feedback": [
+            "correct",
+            "wrong",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0003",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0004",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "8945",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "partial",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0674",
+          "feedback": [
+            "correct",
+            "wrong",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0004",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0005",
+      "moves": 3,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0056",
+          "feedback": [
+            "correct",
+            "correct",
+            "partial",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0005",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0006",
+      "moves": 3,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0056",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0006",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0007",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0056",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0078",
+          "feedback": [
+            "correct",
+            "correct",
+            "partial",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0007",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0008",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0056",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0078",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0008",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0009",
+      "moves": 5,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0056",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0078",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0000",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0009",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0010",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "partial",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0156",
+          "feedback": [
+            "correct",
+            "partial",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0718",
+          "feedback": [
+            "correct",
+            "wrong",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0010",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0011",
+      "moves": 5,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "partial",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0156",
+          "feedback": [
+            "correct",
+            "partial",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0718",
+          "feedback": [
+            "correct",
+            "wrong",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0010",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0011",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0012",
+      "moves": 3,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "partial",
+            "partial",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "2105",
+          "feedback": [
+            "partial",
+            "partial",
+            "partial",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0012",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0013",
+      "moves": 3,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "partial",
+            "wrong",
+            "partial",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "3015",
+          "feedback": [
+            "partial",
+            "correct",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0013",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0014",
+      "moves": 3,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "partial",
+            "wrong",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0189",
+          "feedback": [
+            "correct",
+            "partial",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0014",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0015",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "partial",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0156",
+          "feedback": [
+            "correct",
+            "partial",
+            "partial",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0571",
+          "feedback": [
+            "correct",
+            "partial",
+            "wrong",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0015",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0016",
+      "moves": 3,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "partial",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0156",
+          "feedback": [
+            "correct",
+            "partial",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0016",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0017",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "partial",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0156",
+          "feedback": [
+            "correct",
+            "partial",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0718",
+          "feedback": [
+            "correct",
+            "partial",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0017",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0018",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "partial",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0156",
+          "feedback": [
+            "correct",
+            "partial",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0718",
+          "feedback": [
+            "correct",
+            "wrong",
+            "correct",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0018",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0019",
+      "moves": 6,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "partial",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0156",
+          "feedback": [
+            "correct",
+            "partial",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0718",
+          "feedback": [
+            "correct",
+            "wrong",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0010",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0011",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0019",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0020",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "partial",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0526",
+          "feedback": [
+            "correct",
+            "wrong",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0728",
+          "feedback": [
+            "correct",
+            "wrong",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0020",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0021",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "partial",
+            "partial",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "2105",
+          "feedback": [
+            "partial",
+            "partial",
+            "partial",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0012",
+          "feedback": [
+            "correct",
+            "correct",
+            "partial",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0021",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0022",
+      "moves": 5,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "partial",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0526",
+          "feedback": [
+            "correct",
+            "wrong",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0728",
+          "feedback": [
+            "correct",
+            "wrong",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0020",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0022",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0023",
+      "moves": 3,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "partial",
+            "partial",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0325",
+          "feedback": [
+            "correct",
+            "partial",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0023",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0024",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "partial",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "2468",
+          "feedback": [
+            "partial",
+            "partial",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0524",
+          "feedback": [
+            "correct",
+            "wrong",
+            "correct",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0024",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0025",
+      "moves": 3,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "partial",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0526",
+          "feedback": [
+            "correct",
+            "partial",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0025",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0026",
+      "moves": 3,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "partial",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0526",
+          "feedback": [
+            "correct",
+            "wrong",
+            "correct",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0026",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0027",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "partial",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0526",
+          "feedback": [
+            "correct",
+            "wrong",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0728",
+          "feedback": [
+            "correct",
+            "partial",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0027",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0028",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "partial",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0526",
+          "feedback": [
+            "correct",
+            "wrong",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0728",
+          "feedback": [
+            "correct",
+            "wrong",
+            "correct",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0028",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0029",
+      "moves": 6,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "partial",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0526",
+          "feedback": [
+            "correct",
+            "wrong",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0728",
+          "feedback": [
+            "correct",
+            "wrong",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0020",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0022",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0029",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0030",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "3579",
+          "feedback": [
+            "partial",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0638",
+          "feedback": [
+            "correct",
+            "wrong",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0030",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0031",
+      "moves": 3,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "partial",
+            "wrong",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0189",
+          "feedback": [
+            "correct",
+            "partial",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0031",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0032",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "partial",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "2367",
+          "feedback": [
+            "partial",
+            "partial",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0532",
+          "feedback": [
+            "correct",
+            "wrong",
+            "correct",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0032",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0033",
+      "moves": 5,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "3579",
+          "feedback": [
+            "partial",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0638",
+          "feedback": [
+            "correct",
+            "wrong",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0030",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0033",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0034",
+      "moves": 3,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "correct",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0534",
+          "feedback": [
+            "correct",
+            "wrong",
+            "correct",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0034",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0035",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "3579",
+          "feedback": [
+            "partial",
+            "partial",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0635",
+          "feedback": [
+            "correct",
+            "wrong",
+            "correct",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0035",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0036",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "3579",
+          "feedback": [
+            "partial",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0638",
+          "feedback": [
+            "correct",
+            "partial",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0036",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0037",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "3579",
+          "feedback": [
+            "partial",
+            "wrong",
+            "partial",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0637",
+          "feedback": [
+            "correct",
+            "wrong",
+            "correct",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0037",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0038",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "3579",
+          "feedback": [
+            "partial",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0638",
+          "feedback": [
+            "correct",
+            "wrong",
+            "correct",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0038",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0039",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "3579",
+          "feedback": [
+            "partial",
+            "wrong",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0639",
+          "feedback": [
+            "correct",
+            "wrong",
+            "correct",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0039",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0040",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0456",
+          "feedback": [
+            "correct",
+            "partial",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0748",
+          "feedback": [
+            "correct",
+            "wrong",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0040",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0041",
+      "moves": 3,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "partial",
+            "wrong",
+            "wrong",
+            "partial"
+          ]
+        },
+        {
+          "guess": "4051",
+          "feedback": [
+            "partial",
+            "correct",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0041",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0042",
+      "moves": 3,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "partial",
+            "wrong",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0452",
+          "feedback": [
+            "correct",
+            "partial",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0042",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0043",
+      "moves": 3,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "partial",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0543",
+          "feedback": [
+            "correct",
+            "wrong",
+            "correct",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0043",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0044",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "8945",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0644",
+          "feedback": [
+            "correct",
+            "wrong",
+            "correct",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0044",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0045",
+      "moves": 3,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0456",
+          "feedback": [
+            "correct",
+            "partial",
+            "partial",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0045",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0046",
+      "moves": 3,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0456",
+          "feedback": [
+            "correct",
+            "partial",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0046",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0047",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0456",
+          "feedback": [
+            "correct",
+            "partial",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0748",
+          "feedback": [
+            "correct",
+            "partial",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0047",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0048",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0456",
+          "feedback": [
+            "correct",
+            "partial",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0748",
+          "feedback": [
+            "correct",
+            "wrong",
+            "correct",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0048",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0049",
+      "moves": 5,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0456",
+          "feedback": [
+            "correct",
+            "partial",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0748",
+          "feedback": [
+            "correct",
+            "wrong",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0040",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0049",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0050",
+      "moves": 3,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0056",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0050",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0051",
+      "moves": 3,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "partial",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0156",
+          "feedback": [
+            "correct",
+            "partial",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0051",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0052",
+      "moves": 3,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "partial",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0526",
+          "feedback": [
+            "correct",
+            "partial",
+            "partial",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0052",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0053",
+      "moves": 3,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "partial",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0356",
+          "feedback": [
+            "correct",
+            "partial",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0053",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0054",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "8945",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "partial",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0564",
+          "feedback": [
+            "correct",
+            "partial",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0054",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0055",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0056",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0050",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0055",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0056",
+      "moves": 2,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0056",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0057",
+      "moves": 5,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0056",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0050",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0055",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0057",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0058",
+      "moves": 6,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0056",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0050",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0055",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0057",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0058",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0059",
+      "moves": 7,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0056",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0050",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0055",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0057",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0058",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0059",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0060",
+      "moves": 3,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0056",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0060",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0061",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "partial",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0156",
+          "feedback": [
+            "correct",
+            "partial",
+            "wrong",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0617",
+          "feedback": [
+            "correct",
+            "partial",
+            "partial",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0061",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0062",
+      "moves": 3,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "partial",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0526",
+          "feedback": [
+            "correct",
+            "wrong",
+            "partial",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0062",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0063",
+      "moves": 3,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "partial",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0356",
+          "feedback": [
+            "correct",
+            "partial",
+            "wrong",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0063",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0064",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "8945",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "partial",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0674",
+          "feedback": [
+            "correct",
+            "partial",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0064",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0065",
+      "moves": 3,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0056",
+          "feedback": [
+            "correct",
+            "correct",
+            "partial",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0065",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0066",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0056",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0006",
+          "feedback": [
+            "correct",
+            "correct",
+            "partial",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0066",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0067",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0056",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0060",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0067",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0068",
+      "moves": 5,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0056",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0060",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0067",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0068",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0069",
+      "moves": 6,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0056",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0060",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0067",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0068",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0069",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0070",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0056",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0078",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0070",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0071",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "partial",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0156",
+          "feedback": [
+            "correct",
+            "partial",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0718",
+          "feedback": [
+            "correct",
+            "partial",
+            "partial",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0071",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0072",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "partial",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0526",
+          "feedback": [
+            "correct",
+            "wrong",
+            "partial",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0782",
+          "feedback": [
+            "correct",
+            "partial",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0072",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0073",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "partial",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0356",
+          "feedback": [
+            "correct",
+            "partial",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0783",
+          "feedback": [
+            "correct",
+            "partial",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0073",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0074",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "8945",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "partial",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0674",
+          "feedback": [
+            "correct",
+            "wrong",
+            "correct",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0074",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0075",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0056",
+          "feedback": [
+            "correct",
+            "correct",
+            "partial",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0005",
+          "feedback": [
+            "correct",
+            "correct",
+            "partial",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0075",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0076",
+      "moves": 5,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0056",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0006",
+          "feedback": [
+            "correct",
+            "correct",
+            "partial",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0066",
+          "feedback": [
+            "correct",
+            "correct",
+            "partial",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0076",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0077",
+      "moves": 5,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0056",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0078",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0070",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0077",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0078",
+      "moves": 3,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0056",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0078",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0079",
+      "moves": 6,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0056",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0078",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0070",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0077",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0079",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0080",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0056",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0078",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0080",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0081",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "partial",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0156",
+          "feedback": [
+            "correct",
+            "partial",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0718",
+          "feedback": [
+            "correct",
+            "wrong",
+            "partial",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0081",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0082",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "partial",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0526",
+          "feedback": [
+            "correct",
+            "wrong",
+            "partial",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0782",
+          "feedback": [
+            "correct",
+            "wrong",
+            "correct",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0082",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0083",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "partial",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0356",
+          "feedback": [
+            "correct",
+            "partial",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0783",
+          "feedback": [
+            "correct",
+            "wrong",
+            "correct",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0083",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0084",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "8945",
+          "feedback": [
+            "partial",
+            "wrong",
+            "partial",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0864",
+          "feedback": [
+            "correct",
+            "partial",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0084",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0085",
+      "moves": 5,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0056",
+          "feedback": [
+            "correct",
+            "correct",
+            "partial",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0005",
+          "feedback": [
+            "correct",
+            "correct",
+            "partial",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0075",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0085",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0086",
+      "moves": 6,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0056",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0006",
+          "feedback": [
+            "correct",
+            "correct",
+            "partial",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0066",
+          "feedback": [
+            "correct",
+            "correct",
+            "partial",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0076",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0086",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0087",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0056",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0078",
+          "feedback": [
+            "correct",
+            "correct",
+            "partial",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0087",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0088",
+      "moves": 5,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0056",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0078",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0008",
+          "feedback": [
+            "correct",
+            "correct",
+            "partial",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0088",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0089",
+      "moves": 5,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0056",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0078",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0080",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0089",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0090",
+      "moves": 5,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0056",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0078",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0000",
+          "feedback": [
+            "correct",
+            "correct",
+            "partial",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0090",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0091",
+      "moves": 5,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "partial",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0156",
+          "feedback": [
+            "correct",
+            "partial",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0718",
+          "feedback": [
+            "correct",
+            "wrong",
+            "partial",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0001",
+          "feedback": [
+            "correct",
+            "correct",
+            "partial",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0091",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0092",
+      "moves": 5,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "partial",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0526",
+          "feedback": [
+            "correct",
+            "wrong",
+            "partial",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0782",
+          "feedback": [
+            "correct",
+            "wrong",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0002",
+          "feedback": [
+            "correct",
+            "correct",
+            "partial",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0092",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0093",
+      "moves": 5,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "partial",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0356",
+          "feedback": [
+            "correct",
+            "partial",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0783",
+          "feedback": [
+            "correct",
+            "wrong",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0003",
+          "feedback": [
+            "correct",
+            "correct",
+            "partial",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0093",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0094",
+      "moves": 4,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "8945",
+          "feedback": [
+            "wrong",
+            "partial",
+            "partial",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "9064",
+          "feedback": [
+            "partial",
+            "correct",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0094",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0095",
+      "moves": 6,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0056",
+          "feedback": [
+            "correct",
+            "correct",
+            "partial",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0005",
+          "feedback": [
+            "correct",
+            "correct",
+            "partial",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0075",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0085",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0095",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0096",
+      "moves": 7,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0056",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0006",
+          "feedback": [
+            "correct",
+            "correct",
+            "partial",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0066",
+          "feedback": [
+            "correct",
+            "correct",
+            "partial",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0076",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0086",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0096",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0097",
+      "moves": 5,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0056",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0078",
+          "feedback": [
+            "correct",
+            "correct",
+            "partial",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0007",
+          "feedback": [
+            "correct",
+            "correct",
+            "partial",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0097",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0098",
+      "moves": 6,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0056",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0078",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0008",
+          "feedback": [
+            "correct",
+            "correct",
+            "partial",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0088",
+          "feedback": [
+            "correct",
+            "correct",
+            "partial",
+            "correct"
+          ]
+        },
+        {
+          "guess": "0098",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    },
+    {
+      "secret": "0099",
+      "moves": 5,
+      "success": true,
+      "error": null,
+      "guesses": [
+        {
+          "guess": "1234",
+          "feedback": [
+            "wrong",
+            "wrong",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0056",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0078",
+          "feedback": [
+            "correct",
+            "correct",
+            "wrong",
+            "wrong"
+          ]
+        },
+        {
+          "guess": "0000",
+          "feedback": [
+            "correct",
+            "correct",
+            "partial",
+            "partial"
+          ]
+        },
+        {
+          "guess": "0099",
+          "feedback": [
+            "correct",
+            "correct",
+            "correct",
+            "correct"
+          ]
+        }
+      ]
+    }
+  ]
+}

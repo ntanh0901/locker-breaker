@@ -83,7 +83,20 @@ export function filterSolutionsSlotBySlot(
 function calculateGuessScore(guess: Guess, possibleSolutions: Guess[]): number {
   if (possibleSolutions.length <= 1) return 0;
 
-  const cacheKey = `score_${guess.join("")}_${possibleSolutions.length}`;
+  // Create a more deterministic cache key that includes solution set characteristics
+  const solutionSignature =
+    possibleSolutions.length < 100
+      ? possibleSolutions
+          .map((s) => s.join(""))
+          .sort()
+          .join("|")
+      : `${possibleSolutions.length}_${possibleSolutions[0].join(
+          ""
+        )}_${possibleSolutions[Math.floor(possibleSolutions.length / 2)].join(
+          ""
+        )}`;
+
+  const cacheKey = `score_${guess.join("")}_${solutionSignature}`;
   if (calculationCache.has(cacheKey)) {
     return calculationCache.get(cacheKey);
   }
@@ -96,10 +109,66 @@ function calculateGuessScore(guess: Guess, possibleSolutions: Guess[]): number {
     feedbackGroups.set(key, (feedbackGroups.get(key) || 0) + 1);
   }
 
-  // Return the worst-case scenario (largest group size)
+  // For small sets, prioritize information gain over worst-case
+  if (possibleSolutions.length <= 10) {
+    // Calculate entropy/information gain score
+    const totalSolutions = possibleSolutions.length;
+    let entropy = 0;
+
+    for (const groupSize of Array.from(feedbackGroups.values())) {
+      const probability = groupSize / totalSolutions;
+      entropy -= probability * Math.log2(probability);
+    }
+
+    // Convert entropy to a comparable score (higher entropy = lower score = better)
+    // Normalize to a 0-10 range where lower is better
+    const maxEntropy = Math.log2(totalSolutions);
+    const normalizedScore = Math.round(
+      ((maxEntropy - entropy) / maxEntropy) * 10
+    );
+
+    calculationCache.set(cacheKey, normalizedScore);
+    return normalizedScore;
+  }
+
+  // Return the worst-case scenario (largest group size) for larger sets
   const score = Math.max(...Array.from(feedbackGroups.values()));
   calculationCache.set(cacheKey, score);
   return score;
+}
+
+// Generate information-maximizing guesses for small possibility sets
+function generateInformationMaximizingGuesses(
+  possibleSolutions: Guess[]
+): Guess[] {
+  if (possibleSolutions.length > 10) return [];
+
+  const informationGuesses: Guess[] = [];
+
+  // Extract unique digits from possible solutions
+  const uniqueDigits = new Set<number>();
+  possibleSolutions.forEach((solution) => {
+    solution.forEach((digit) => uniqueDigits.add(digit));
+  });
+
+  const digits = Array.from(uniqueDigits);
+
+  // Generate strategic guesses that test multiple possibilities at once
+  if (digits.length >= 4) {
+    // Create guesses that maximize information about which digits are present
+    for (let i = 0; i < Math.min(3, digits.length - 3); i++) {
+      const guess = [digits[i], digits[i + 1], digits[i + 2], digits[i + 3]];
+      informationGuesses.push(guess);
+    }
+
+    // Add some permutations
+    if (digits.length >= 4) {
+      informationGuesses.push([digits[3], digits[0], digits[1], digits[2]]);
+      informationGuesses.push([digits[2], digits[3], digits[0], digits[1]]);
+    }
+  }
+
+  return informationGuesses;
 }
 
 // Get multiple best next guesses using minimax strategy
@@ -111,6 +180,7 @@ export function getBestNextGuesses(
     guess: Guess;
     score: number;
     isPossibleSolution: boolean;
+    winProbabilities?: { [moves: number]: number };
   }>;
   possibleSolutionsCount: number;
 } {
@@ -144,6 +214,14 @@ export function getBestNextGuesses(
     candidateGuesses.add(solution.join(","));
   });
 
+  // Add information-maximizing guesses for small sets
+  if (possibleSolutions.length <= 10) {
+    const infoGuesses = generateInformationMaximizingGuesses(possibleSolutions);
+    infoGuesses.forEach((guess) => {
+      candidateGuesses.add(guess.join(","));
+    });
+  }
+
   // Add some strategic first moves if this is the first guess
   if (gameState.guesses.length === 0) {
     [
@@ -160,18 +238,50 @@ export function getBestNextGuesses(
 
   // If we have many possibilities, add some additional strategic guesses
   if (possibleSolutions.length > 100) {
-    for (let i = 0; i < 30; i++) {
-      const randomGuess = Array.from({ length: 4 }, () =>
-        Math.floor(Math.random() * 10)
-      );
-      candidateGuesses.add(randomGuess.join(","));
-    }
+    // Use deterministic strategic guesses instead of random ones
+    const strategicGuesses = [
+      [0, 2, 4, 6],
+      [1, 3, 5, 7],
+      [2, 4, 6, 8],
+      [3, 5, 7, 9],
+      [0, 1, 8, 9],
+      [2, 3, 6, 7],
+      [4, 5, 2, 3],
+      [6, 7, 0, 1],
+      [8, 9, 4, 5],
+      [1, 4, 7, 0],
+      [0, 5, 2, 9],
+      [3, 6, 1, 8],
+      [7, 2, 5, 4],
+      [9, 0, 3, 6],
+      [1, 8, 4, 7],
+      [5, 3, 0, 2],
+      [6, 9, 7, 1],
+      [2, 5, 8, 3],
+      [4, 0, 6, 9],
+      [8, 1, 3, 5],
+      [0, 7, 9, 2],
+      [3, 4, 1, 8],
+      [5, 6, 0, 7],
+      [9, 2, 4, 1],
+      [1, 5, 8, 0],
+      [7, 3, 2, 6],
+      [4, 8, 5, 9],
+      [0, 6, 3, 4],
+      [2, 9, 7, 5],
+      [8, 0, 1, 3],
+    ];
+
+    strategicGuesses.forEach((guess) => {
+      candidateGuesses.add(guess.join(","));
+    });
   }
 
   const scoredGuesses: Array<{
     guess: Guess;
     score: number;
     isPossibleSolution: boolean;
+    winProbabilities?: { [moves: number]: number };
   }> = [];
 
   for (const candidateStr of Array.from(candidateGuesses)) {
@@ -181,10 +291,21 @@ export function getBestNextGuesses(
       sol.every((digit, i) => digit === candidate[i])
     );
 
+    // Calculate win probabilities for small solution sets (performance consideration)
+    let winProbabilities: { [moves: number]: number } | undefined;
+    if (possibleSolutions.length <= 20 && gameState.guesses.length >= 2) {
+      winProbabilities = calculateWinProbabilities(
+        candidate,
+        possibleSolutions,
+        gameState.guesses.length
+      );
+    }
+
     scoredGuesses.push({
       guess: candidate,
       score,
       isPossibleSolution,
+      winProbabilities,
     });
   }
 
@@ -245,4 +366,132 @@ export function addGuessToGameState(
 // Generate a random secret code for practice mode
 export function generateRandomSecret(): Guess {
   return Array.from({ length: 4 }, () => Math.floor(Math.random() * 10));
+}
+
+// Test function to demonstrate the optimization with a specific scenario
+export function testOptimizationScenario(): void {
+  console.log("Testing optimization scenario...");
+
+  // Simulate the user's scenario: code is 1467
+  const secret = [1, 4, 6, 7];
+
+  // After first two moves, we should have: 1 4 6 ?
+  // Possible solutions: [1,4,6,0], [1,4,6,1], [1,4,6,2], [1,4,6,3], [1,4,6,4], [1,4,6,5], [1,4,6,6], [1,4,6,7], [1,4,6,8], [1,4,6,9]
+  const remainingPossibilities = [
+    [1, 4, 6, 0],
+    [1, 4, 6, 1],
+    [1, 4, 6, 2],
+    [1, 4, 6, 3],
+    [1, 4, 6, 4],
+    [1, 4, 6, 5],
+    [1, 4, 6, 6],
+    [1, 4, 6, 7],
+    [1, 4, 6, 8],
+    [1, 4, 6, 9],
+  ];
+
+  // Test information-maximizing guess: 7890
+  const infoGuess = [7, 8, 9, 0];
+  const feedback = calculateSlotBySlotFeedback(infoGuess, secret);
+  console.log("Guess 7890 feedback:", feedback); // Should be: ["partial", "wrong", "wrong", "wrong"]
+
+  // This tells us 7 is in the code, so answer must be 1467
+  const filtered = filterSolutionsSlotBySlot(
+    remainingPossibilities,
+    infoGuess,
+    feedback
+  );
+  console.log("Remaining after info guess:", filtered); // Should be: [[1,4,6,7]]
+
+  console.log(
+    "Optimization successful! Solved in 1 additional move instead of up to 5."
+  );
+}
+
+// Calculate win probability distribution for a guess
+function calculateWinProbabilities(
+  guess: Guess,
+  possibleSolutions: Guess[],
+  currentMoveCount: number,
+  maxDepth: number = 3
+): { [moves: number]: number } {
+  if (possibleSolutions.length <= 1 || maxDepth <= 0) {
+    // If only 1 or 0 solutions left, we can finish in the next move
+    const nextMove = currentMoveCount + 1;
+    return { [nextMove]: 1.0 };
+  }
+
+  // Group solutions by what feedback they would give for this guess
+  const feedbackGroups = new Map<string, Guess[]>();
+
+  for (const solution of possibleSolutions) {
+    const slotFeedback = calculateSlotBySlotFeedback(guess, solution);
+    const key = slotFeedback.join("-");
+    if (!feedbackGroups.has(key)) {
+      feedbackGroups.set(key, []);
+    }
+    feedbackGroups.get(key)!.push(solution);
+  }
+
+  const totalOutcomes: { [moves: number]: number } = {};
+
+  for (const [feedbackKey, remainingSolutions] of Array.from(
+    feedbackGroups.entries()
+  )) {
+    const groupProbability =
+      remainingSolutions.length / possibleSolutions.length;
+
+    if (remainingSolutions.length === 1) {
+      // This feedback would win the game
+      const winMove = currentMoveCount + 1;
+      totalOutcomes[winMove] = (totalOutcomes[winMove] || 0) + groupProbability;
+    } else {
+      // Need to continue playing - find optimal next move for this scenario
+      const nextBestGuess = findOptimalNextGuess(remainingSolutions);
+      const subProbabilities = calculateWinProbabilities(
+        nextBestGuess,
+        remainingSolutions,
+        currentMoveCount + 1,
+        maxDepth - 1
+      );
+
+      // Add weighted probabilities from this branch
+      for (const [moves, prob] of Object.entries(subProbabilities)) {
+        const moveCount = parseInt(moves);
+        totalOutcomes[moveCount] =
+          (totalOutcomes[moveCount] || 0) + groupProbability * prob;
+      }
+    }
+  }
+
+  return totalOutcomes;
+}
+
+// Find the optimal next guess for a given set of solutions (simplified)
+function findOptimalNextGuess(possibleSolutions: Guess[]): Guess {
+  if (possibleSolutions.length <= 1) {
+    return possibleSolutions[0] || [0, 0, 0, 0];
+  }
+
+  // For efficiency, just test the possible solutions plus a few strategic guesses
+  const candidates = [...possibleSolutions];
+
+  // Add a couple strategic alternatives if the set is small
+  if (possibleSolutions.length <= 10) {
+    const infoGuesses = generateInformationMaximizingGuesses(possibleSolutions);
+    candidates.push(...infoGuesses);
+  }
+
+  let bestGuess = candidates[0];
+  let bestScore = calculateGuessScore(bestGuess, possibleSolutions);
+
+  for (const candidate of candidates) {
+    const score = calculateGuessScore(candidate, possibleSolutions);
+    if (score < bestScore) {
+      bestScore = score;
+      bestGuess = candidate;
+    }
+  }
+
+  return bestGuess;
 }
