@@ -299,6 +299,11 @@ export default function LockerBreaker() {
             </h1>
             <Brain className="text-purple-400" size={32} />
           </div>
+          <div className="mt-2">
+            <span className="text-xs bg-gradient-to-r from-purple-600 to-blue-600 bg-opacity-80 px-3 py-1 rounded-full border border-purple-400 shadow-lg">
+              v2.0 - Enhanced with new 2K Rules
+            </span>
+          </div>
         </header>
 
         {/* Mode Selector */}
@@ -790,10 +795,23 @@ export default function LockerBreaker() {
                             const fiveMoveChance =
                               suggestion.winProbabilities[nextMove + 1] || 0;
 
-                            if (fiveMoveChance > 0.6) {
-                              strategyType = "conservative"; // High chance of 5-move finish
-                            } else if (fourMoveChance > 0.4) {
-                              strategyType = "aggressive"; // Good chance of 4-move finish
+                            // For endgame scenarios (≤3 possibilities)
+                            if (suggestions.possibleSolutionsCount <= 3) {
+                              if (fourMoveChance > 0 && fiveMoveChance < 1.0) {
+                                strategyType = "aggressive"; // Has chance for 4-move win
+                              } else if (
+                                fiveMoveChance >= 1.0 &&
+                                fourMoveChance === 0
+                              ) {
+                                strategyType = "conservative"; // Guaranteed 5-move win, no 4-move chance
+                              }
+                            } else {
+                              // Original logic for larger solution sets
+                              if (fiveMoveChance > 0.6) {
+                                strategyType = "conservative"; // High chance of 5-move finish
+                              } else if (fourMoveChance > 0.4) {
+                                strategyType = "aggressive"; // Good chance of 4-move finish
+                              }
                             }
                           }
 
@@ -801,33 +819,19 @@ export default function LockerBreaker() {
                         }
                       );
 
-                      // Check if all optimal suggestions are of the same strategy type
-                      const optimalSuggestions = suggestionAnalysis.filter(
-                        (s) => s.isOptimal
+                      // Strategy analysis for labeling (no highlighting needed)
+                      const allStrategyTypes = new Set(
+                        suggestionAnalysis.map((s) => s.strategyType)
                       );
-                      const uniqueStrategyTypes = new Set(
-                        optimalSuggestions.map((s) => s.strategyType)
-                      );
-                      const shouldHighlight = uniqueStrategyTypes.size > 1; // Only highlight if there are different strategy types
+                      const hasMultipleStrategyTypes =
+                        allStrategyTypes.size > 1;
 
                       return suggestionAnalysis.map(
                         ({ suggestion, isOptimal, strategyType }, index) => {
                           return (
                             <button
                               key={index}
-                              className={`w-full p-3 sm:p-4 rounded-lg border transition-all hover:scale-105 active:scale-95 touch-manipulation ${
-                                shouldHighlight &&
-                                isOptimal &&
-                                strategyType === "conservative"
-                                  ? "bg-gradient-to-r from-emerald-600 to-teal-600 border-emerald-400"
-                                  : shouldHighlight &&
-                                    isOptimal &&
-                                    strategyType === "aggressive"
-                                  ? "bg-gradient-to-r from-orange-600 to-red-600 border-orange-400"
-                                  : shouldHighlight && isOptimal
-                                  ? "bg-gradient-to-r from-blue-600 to-purple-600 border-blue-400"
-                                  : "bg-slate-700 border-slate-600 hover:border-slate-500"
-                              }`}
+                              className="w-full p-3 sm:p-4 rounded-lg border transition-all hover:scale-105 active:scale-95 touch-manipulation bg-slate-700 border-slate-600 hover:border-slate-500"
                               onClick={() => useSuggestion(suggestion.guess)}
                               aria-label={`Use suggestion ${
                                 index + 1
@@ -835,30 +839,46 @@ export default function LockerBreaker() {
                             >
                               <div className="flex items-center justify-between mb-2">
                                 <span className="text-xs sm:text-sm font-medium">
-                                  {shouldHighlight &&
-                                  isOptimal &&
+                                  {/* Strategy labels when there are multiple strategy types */}
+                                  {hasMultipleStrategyTypes &&
                                   strategyType === "conservative"
-                                    ? "🛡️ SAFE CHOICE"
-                                    : shouldHighlight &&
-                                      isOptimal &&
+                                    ? suggestions.possibleSolutionsCount <= 3
+                                      ? "🛡️ SAFE PLAY"
+                                      : "🛡️ SAFE CHOICE"
+                                    : hasMultipleStrategyTypes &&
                                       strategyType === "aggressive"
-                                    ? "⚡ RISKY PLAY"
-                                    : shouldHighlight && isOptimal
+                                    ? suggestions.possibleSolutionsCount <= 3
+                                      ? "⚡ RISKY MOVE"
+                                      : "⚡ RISKY MOVE"
+                                    : /* Default labeling when no strategy differences */
+                                    isOptimal
                                     ? "🌟 BEST MOVE"
-                                    : isOptimal
-                                    ? "🌟 BEST MOVE"
+                                    : suggestion.isPossibleSolution &&
+                                      suggestions.possibleSolutionsCount <= 3 &&
+                                      suggestions.possibleSolutionsCount > 1
+                                    ? `🎲 ${Math.round(
+                                        (1 /
+                                          suggestions.possibleSolutionsCount) *
+                                          100
+                                      )}% CHANCE`
+                                    : !suggestion.isPossibleSolution &&
+                                      suggestion.winProbabilities &&
+                                      suggestion.winProbabilities[
+                                        gameState.guesses.length + 2
+                                      ] === 1.0
+                                    ? "🛡️ SAFE PLAY"
                                     : suggestions.possibleSolutionsCount === 2
                                     ? `🎲 50/50 Choice ${index + 1}`
                                     : `Option ${index + 1}`}
                                 </span>
                                 <div className="flex items-center gap-2">
-                                  <span className="text-xs bg-black bg-opacity-30 px-2 py-1 rounded">
+                                  {/* <span className="text-xs bg-black bg-opacity-30 px-2 py-1 rounded">
                                     {suggestions.possibleSolutionsCount <= 10
                                       ? `Info Score: ${suggestion.score}`
                                       : `Risk: ${
                                           Math.round(suggestion.score * 10) / 10
                                         }`}
-                                  </span>
+                                  </span> */}
                                   {suggestion.isPossibleSolution && (
                                     <span className="text-xs bg-green-600 bg-opacity-70 px-2 py-1 rounded">
                                       Possible Answer
@@ -871,21 +891,7 @@ export default function LockerBreaker() {
                                 {suggestion.guess.map((digit, digitIndex) => (
                                   <div
                                     key={digitIndex}
-                                    className={`w-6 h-6 sm:w-8 sm:h-8 rounded flex items-center justify-center font-bold text-xs sm:text-sm ${
-                                      shouldHighlight &&
-                                      isOptimal &&
-                                      strategyType === "conservative"
-                                        ? "bg-white text-emerald-800"
-                                        : shouldHighlight &&
-                                          isOptimal &&
-                                          strategyType === "aggressive"
-                                        ? "bg-white text-orange-800"
-                                        : shouldHighlight && isOptimal
-                                        ? "bg-white text-purple-800"
-                                        : isOptimal
-                                        ? "bg-white text-slate-800"
-                                        : "bg-slate-600 text-white"
-                                    }`}
+                                    className="w-6 h-6 sm:w-8 sm:h-8 rounded flex items-center justify-center font-bold text-xs sm:text-sm bg-slate-600 text-white"
                                   >
                                     {digit}
                                   </div>
