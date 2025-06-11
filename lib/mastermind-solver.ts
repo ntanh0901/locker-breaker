@@ -281,19 +281,55 @@ export function getBestNextGuesses(
     };
   }
 
-  // Endgame optimization: show all solutions when ≤3 remain, prioritize duplicates
+  // Endgame optimization: show all solutions when ≤3 remain, plus strategic alternatives
   if (possibleSolutions.length <= 3) {
+    const suggestions: Array<{
+      guess: Guess;
+      score: number;
+      isPossibleSolution: boolean;
+      winProbabilities?: { [moves: number]: number };
+    }> = [];
+
+    // Add all possible solutions with correct win probabilities
     const sortedSolutions = possibleSolutions.sort(
       (a, b) => new Set(b).size - new Set(a).size // Prefer solutions with more duplicates
     );
 
-    return {
-      suggestions: sortedSolutions.map((solution, index) => ({
+    const nextMove = gameState.guesses.length + 1;
+    const winProbabilityThisMove = 1.0 / possibleSolutions.length; // 33% for 3 solutions
+    const winProbabilityNextMove =
+      possibleSolutions.length > 1 ? 1.0 - winProbabilityThisMove : 0;
+
+    sortedSolutions.forEach((solution, index) => {
+      suggestions.push({
         guess: solution,
         score: index, // Lower score for duplicate-preferred solutions
         isPossibleSolution: true,
-        winProbabilities: { [gameState.guesses.length + 1]: 1.0 },
-      })),
+        winProbabilities: {
+          [nextMove]: winProbabilityThisMove,
+          [nextMove + 1]: winProbabilityNextMove,
+        },
+      });
+    });
+
+    // Add strategic "safe" guesses for guaranteed next-move win
+    if (possibleSolutions.length > 1) {
+      const strategicGuesses =
+        generateInformationMaximizingGuesses(possibleSolutions);
+      strategicGuesses.slice(0, 2).forEach((strategicGuess, index) => {
+        suggestions.push({
+          guess: strategicGuess,
+          score: 100 + index, // Higher score (worse) than direct solutions
+          isPossibleSolution: false,
+          winProbabilities: {
+            [nextMove + 1]: 1.0, // Guaranteed win in next move
+          },
+        });
+      });
+    }
+
+    return {
+      suggestions,
       possibleSolutionsCount: possibleSolutions.length,
     };
   }
@@ -417,14 +453,30 @@ export function getBestNextGuesses(
     return 0;
   });
 
+  // Filter out significantly inferior suggestions
+  const bestScore = Math.min(...scoredGuesses.map((s) => s.score));
+  const qualitySuggestions = scoredGuesses.filter((suggestion) => {
+    // Always include possible solutions
+    if (suggestion.isPossibleSolution) return true;
+
+    // For non-solutions, only include if they're competitive
+    // Allow some tolerance, but not dramatically worse scores
+    const scoreThreshold =
+      possibleSolutions.length <= 10 ? bestScore + 2 : bestScore * 1.5;
+    return suggestion.score <= scoreThreshold;
+  });
+
   // When there are few possibilities left, ensure we show at least all possible solutions
+  const possibleSolutionSuggestions = qualitySuggestions.filter(
+    (s) => s.isPossibleSolution
+  );
   const effectiveMaxSuggestions =
     possibleSolutions.length <= 5
-      ? Math.max(maxSuggestions, possibleSolutions.length)
+      ? Math.max(maxSuggestions, possibleSolutionSuggestions.length)
       : maxSuggestions;
 
   return {
-    suggestions: scoredGuesses.slice(0, effectiveMaxSuggestions),
+    suggestions: qualitySuggestions.slice(0, effectiveMaxSuggestions),
     possibleSolutionsCount: possibleSolutions.length,
   };
 }
