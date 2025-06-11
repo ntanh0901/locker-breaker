@@ -1072,8 +1072,10 @@ export default function LockerBreaker() {
                         </div>
                         <span className="text-xs text-gray-400">
                           {index === 0
-                            ? "Most Popular"
-                            : `Alternative ${index + 1}`}
+                            ? "⭐ Best choice"
+                            : index === 1
+                            ? "Alternative choice"
+                            : "Alternative choice"}
                         </span>
                       </button>
                     ))}
