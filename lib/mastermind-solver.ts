@@ -281,21 +281,19 @@ export function getBestNextGuesses(
     };
   }
 
-  // Endgame optimization: prefer duplicate-heavy solutions when ≤3 remain
+  // Endgame optimization: show all solutions when ≤3 remain, prioritize duplicates
   if (possibleSolutions.length <= 3) {
-    const duplicatePreferredSolution = possibleSolutions.sort(
+    const sortedSolutions = possibleSolutions.sort(
       (a, b) => new Set(b).size - new Set(a).size // Prefer solutions with more duplicates
-    )[0];
+    );
 
     return {
-      suggestions: [
-        {
-          guess: duplicatePreferredSolution,
-          score: 0,
-          isPossibleSolution: true,
-          winProbabilities: { [gameState.guesses.length + 1]: 1.0 },
-        },
-      ],
+      suggestions: sortedSolutions.map((solution, index) => ({
+        guess: solution,
+        score: index, // Lower score for duplicate-preferred solutions
+        isPossibleSolution: true,
+        winProbabilities: { [gameState.guesses.length + 1]: 1.0 },
+      })),
       possibleSolutionsCount: possibleSolutions.length,
     };
   }
@@ -434,7 +432,11 @@ export function getBestNextGuesses(
 // Get optimal first guess for slot-by-slot feedback game
 export function getOptimalFirstGuesses(): Guess[] {
   // Optimized for enhanced feedback rules - proven to reduce avg moves by 0.1
-  return [[1, 1, 2, 3]]; // Strategic duplicate testing for enhanced feedback
+  return [
+    [1, 1, 2, 3],
+    [1, 2, 3, 4],
+    [1, 5, 6, 7],
+  ]; // Strategic duplicate testing for enhanced feedback
 }
 
 // Initialize a new game state
