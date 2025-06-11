@@ -855,7 +855,9 @@ export default function LockerBreaker() {
                                   <span className="text-xs bg-black bg-opacity-30 px-2 py-1 rounded">
                                     {suggestions.possibleSolutionsCount <= 10
                                       ? `Info Score: ${suggestion.score}`
-                                      : `Risk: ${suggestion.score}`}
+                                      : `Risk: ${
+                                          Math.round(suggestion.score * 10) / 10
+                                        }`}
                                   </span>
                                   {suggestion.isPossibleSolution && (
                                     <span className="text-xs bg-green-600 bg-opacity-70 px-2 py-1 rounded">
