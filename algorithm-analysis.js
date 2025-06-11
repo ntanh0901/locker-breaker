@@ -1,5 +1,9 @@
-// Algorithm Analysis Script - Optimized Version
+// Algorithm Analysis Script - Enhanced Feedback Rules Version
 // Tests the Mastermind solver against all possible 4-digit codes (0000-9999)
+//
+// UPDATED: Now uses enhanced feedback rules for better information precision:
+// - RED (wrong): No additional instances of digit exist beyond correct ones
+// - YELLOW (partial): Additional instances exist in other positions
 
 const fs = require("fs");
 
@@ -30,15 +34,46 @@ function generateAllCombinations() {
 
 function calculateSlotBySlotFeedback(guess, secret) {
   const result = [];
+  const correctPositions = new Set();
+
+  // First pass: identify all correct positions
   for (let i = 0; i < 4; i++) {
     if (guess[i] === secret[i]) {
       result[i] = "correct";
-    } else if (secret.includes(guess[i])) {
-      result[i] = "partial";
-    } else {
-      result[i] = "wrong";
+      correctPositions.add(i);
     }
   }
+
+  // Second pass: handle incorrect positions with new enhanced rules
+  for (let i = 0; i < 4; i++) {
+    if (correctPositions.has(i)) {
+      continue; // Already marked as correct
+    }
+
+    const guessDigit = guess[i];
+
+    // Count total occurrences of this digit in secret
+    const totalInSecret = secret.filter((d) => d === guessDigit).length;
+
+    // Count how many times we guessed this digit correctly
+    const correctGuesses = guess.filter(
+      (d, idx) => d === guessDigit && correctPositions.has(idx)
+    ).length;
+
+    if (totalInSecret === 0) {
+      // Digit doesn't exist in secret at all
+      result[i] = "wrong";
+    } else if (totalInSecret <= correctGuesses) {
+      // We've already found ALL instances of this digit correctly (or more)
+      // No additional instances exist, so this incorrect guess is red
+      result[i] = "wrong";
+    } else {
+      // There are additional instances of this digit beyond what we got right
+      // This means the digit appears in other positions we haven't found
+      result[i] = "partial";
+    }
+  }
+
   return result;
 }
 
@@ -86,6 +121,14 @@ function calculateGuessScore(guess, possibleSolutions) {
   } else {
     // Return the worst-case scenario (largest group size) for larger sets
     score = Math.max(...Array.from(feedbackGroups.values()));
+
+    // Feedback pruning: bonus for moves that confirm duplicates early
+    for (const feedbackKey of Array.from(feedbackGroups.keys())) {
+      if (feedbackKey.includes("correct-correct")) {
+        score *= 0.8; // 20% bonus for locking duplicates early
+        break;
+      }
+    }
   }
 
   scoreCache.set(cacheKey, score);
@@ -101,6 +144,14 @@ function getBestNextGuess(possibleSolutions, guessCount, debug = false) {
   if (possibleSolutions.length === 0) return null;
   if (possibleSolutions.length === 1) return possibleSolutions[0];
 
+  // Endgame optimization: prefer duplicate-heavy solutions when ≤3 remain
+  if (possibleSolutions.length <= 3) {
+    const duplicatePreferredSolution = possibleSolutions.sort(
+      (a, b) => new Set(b).size - new Set(a).size // Prefer solutions with more duplicates
+    )[0];
+    return duplicatePreferredSolution;
+  }
+
   const candidateGuesses = new Set();
 
   // Add all possible solutions as candidates (but limit for performance)
@@ -111,27 +162,47 @@ function getBestNextGuess(possibleSolutions, guessCount, debug = false) {
 
   // Add strategic first moves if this is the first guess
   if (guessCount === 0) {
-    [
-      [1, 2, 3, 4],
-      [0, 1, 2, 3],
-      [5, 6, 7, 8],
-    ].forEach((guess) => {
-      candidateGuesses.add(guess.join(","));
-    });
+    // Optimized first guess for enhanced feedback rules
+    candidateGuesses.add([1, 1, 2, 3].join(","));
   }
 
-  // For small sets, add some information-maximizing guesses
+  // For small sets, add information-maximizing guesses (enhanced for new feedback rules)
   if (possibleSolutions.length <= 10) {
-    const uniqueDigits = new Set();
+    const digitFrequency = new Map();
     possibleSolutions.forEach((solution) => {
-      solution.forEach((digit) => uniqueDigits.add(digit));
+      solution.forEach((digit) => {
+        digitFrequency.set(digit, (digitFrequency.get(digit) || 0) + 1);
+      });
     });
 
-    const digits = Array.from(uniqueDigits);
-    if (digits.length >= 4) {
-      // Add one strategic information guess
+    const candidateDigits = Array.from(digitFrequency.keys()).sort(
+      (a, b) => digitFrequency.get(a) - digitFrequency.get(b)
+    );
+
+    const allDigits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    const unknownDigits = allDigits.filter((d) => !digitFrequency.has(d));
+
+    // Strategy 1: Test unique digits from candidates
+    if (candidateDigits.length >= 4) {
       candidateGuesses.add(
-        [digits[0], digits[1], digits[2], digits[3]].join(",")
+        [
+          candidateDigits[0],
+          candidateDigits[1],
+          candidateDigits[2],
+          candidateDigits[3],
+        ].join(",")
+      );
+    }
+
+    // Strategy 2: Test unknown digits for elimination
+    if (unknownDigits.length >= 4) {
+      candidateGuesses.add(
+        [
+          unknownDigits[0],
+          unknownDigits[1],
+          unknownDigits[2],
+          unknownDigits[3],
+        ].join(",")
       );
     }
   }
