@@ -299,6 +299,11 @@ export default function LockerBreaker() {
             </h1>
             <Brain className="text-purple-400" size={32} />
           </div>
+          <div className="mt-2">
+            <span className="text-xs bg-gradient-to-r from-purple-600 to-blue-600 bg-opacity-80 px-3 py-1 rounded-full border border-purple-400 shadow-lg">
+              v2.0 - Enhanced with new 2K Rules
+            </span>
+          </div>
         </header>
 
         {/* Mode Selector */}
